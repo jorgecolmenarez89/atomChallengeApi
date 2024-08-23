@@ -1,8 +1,13 @@
+
+import {onRequest} from "firebase-functions/v2/https";
 import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import { routes } from './routes';
+
+dotenv.config();
 
 const app: Application = express();
 
@@ -36,7 +41,7 @@ app.get("/", async (req: Request, res: Response): Promise<Response> => {
 
 routes(app)
 
-const PORT = 3000;
+const PORT =  process.env.PORT || 3000;
 
 try {
   app.listen(PORT, (): void => {
@@ -45,3 +50,7 @@ try {
 } catch (error: any) {
   console.error(`Error occured: ${error.message}`);
 }
+
+export const atomChallengeApi = onRequest(app);
+
+

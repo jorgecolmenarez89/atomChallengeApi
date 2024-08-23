@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
-import { db } from "../utils/firebase-admin";
-import moment from "moment";
 import { createUserService, getUserService } from "../services/auth.service";
-import { get } from "http";
 
 export const getUser = async (req: Request, res: Response) => {
   try {

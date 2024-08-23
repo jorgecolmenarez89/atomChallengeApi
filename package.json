@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "tsc",
+    "build": "npx tsc --resolveJsonModule --esModuleInterop",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
     "pretty": "prettier --write \"src/**/*.ts\""
@@ -22,7 +22,7 @@
     "eslint": "^8.10.0",
     "prettier": "^2.5.1",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.5"
+    "typescript": "^4.9.5"
   },
   "husky": {
     "hooks": {
