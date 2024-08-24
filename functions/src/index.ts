@@ -14,11 +14,34 @@ const app: Application = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200, // For legacy browser support
-};
-app.use(cors(corsOptions));
+const allowedOrigins: any = [
+  "http://localhost:4200",
+  "https://challenge-atom.web.app",
+];
+
+app.use(
+  cors({
+    origin: function (origin: any, callback) {
+      // allow requests with no origin, ie. cURL
+      // (like mobile apps or curl requests)
+      origin = origin === "null" ? null : origin;
+      if (!origin) return callback(null, true);
+      // console.warn("CORS: ");
+      // console.warn({origin});
+      // console.warn({allowedOrigins});
+      // console.log(allowedOrigins.indexOf(origin));
+
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 
 app.use(function (req, res, next) {
   res.setHeader(
