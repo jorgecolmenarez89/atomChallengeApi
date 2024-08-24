@@ -1,5 +1,5 @@
 
-import {onRequest} from "firebase-functions/v2/https";
+//import {onRequest} from "firebase-functions/v2/https";
 import express, { Application, Request, Response } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -51,6 +51,7 @@ try {
   console.error(`Error occured: ${error.message}`);
 }
 
-export const atomChallengeApi = onRequest(app);
+//for firebase functions
+//export const atomChallengeApi = onRequest(app);
 
 
